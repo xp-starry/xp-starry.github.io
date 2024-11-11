@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>transformer</title>
+      <link href="/2024/11/11/transformer/index/"/>
+      <url>/2024/11/11/transformer/index/</url>
+      
+        <content type="html"><![CDATA[<h4 id="李沐transformer"><a href="#李沐transformer" class="headerlink" title="李沐transformer"></a>李沐transformer</h4><h5 id="transformer架构："><a href="#transformer架构：" class="headerlink" title="transformer架构："></a>transformer架构：</h5><pre><code>            - 基于编码器-解码器架构来处理序列对。            - 跟使用注意力的seq2seq不同，transformer是纯基于注意力。</code></pre><p>下图为架构对比：</p><p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111151029380.png" alt="image-20241111151029380"></p><p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111151058321.png" alt="image-20241111151058321"></p><h3 id="详解transformer中的自注意力以及多头注意力"><a href="#详解transformer中的自注意力以及多头注意力" class="headerlink" title="详解transformer中的自注意力以及多头注意力"></a>详解transformer中的自注意力以及多头注意力</h3><p>原文链接：<a href="https://blog.csdn.net/qq_37541097/article/details/117691873">https://blog.csdn.net/qq_37541097/article/details/117691873</a></p><p>transformer解决了RNN，LSTM等模型记忆长度有限且无法并行化的缺点。</p><h4 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h4><p><img src="https://pic.imgdb.cn/item/67320d50d29ded1a8c979049.png"></p><p>字母含义说明：</p><pre><code>- q代表query，后续会和每一个k进行匹配；- k代表key，后续会被每个q匹配；- v代表从a中提取得到的信息；- 后续q和k匹配的过程可以理解为计算两者的相关性，相关性越大，对应v的权重也就越大。</code></pre><p>并行化是通过向量来实现的。</p><p><img src="https://pic.imgdb.cn/item/67320d3bd29ded1a8c9780b9.png"></p><p><img src="https://pic.imgdb.cn/item/67320d22d29ded1a8c976eab.png"></p><h5 id="思路整理"><a href="#思路整理" class="headerlink" title="思路整理"></a>思路整理</h5><p><img src="https://pic.imgdb.cn/item/67320cd9d29ded1a8c97353f.jpg"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>主题配置问题</title>
       <link href="/2024/11/11/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/index/"/>
       <url>/2024/11/11/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/index/</url>
