@@ -395,34 +395,20 @@
 <p><img src="https://pic.imgdb.cn/item/67320d22d29ded1a8c976eab.png"></p>
 <h5 id="思路整理"><a href="#思路整理" class="headerlink" title="思路整理"></a>思路整理</h5><img src="https://pic.imgdb.cn/item/67320cd9d29ded1a8c97353f.jpg" style="zoom:50%;" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h4 id="Multi-head-Self-Attention"><a href="#Multi-head-Self-Attention" class="headerlink" title="Multi-head Self-Attention"></a>Multi-head Self-Attention</h4><p>​		实际使用的还是Multi-head Self-Attention。</p>
+<p><img src="https://pic.imgdb.cn/item/67321287d29ded1a8c9ca79b.png"></p>
+<p>​		根据head数目h进一步将q，k，v分为h份，第二个角标对应head数。</p>
+<p>论文当中是由映射得到的，但是可以理解为均分操作。</p>
+<p><img src="https://pic.imgdb.cn/item/6732136ed29ded1a8c9d85e3.png"></p>
+<p>将角标2与head对应。</p>
+<p><img src="https://pic.imgdb.cn/item/673213b1d29ded1a8c9dc450.png"></p>
+<p>针对每个head使用Self-Attention中相同的方法即可得到对应的结果。</p>
+<p><img src="https://pic.imgdb.cn/item/67321408d29ded1a8c9e1aba.png"></p>
+<p>将每个head得到的结果进行concat拼接。注意此处的拼接方式</p>
+<p><img src="https://pic.imgdb.cn/item/6732147bd29ded1a8c9e8bda.png"></p>
+<p>接着将拼接后的结果通过Wo（可学习的参数）进行融合，融合后得到最终的结果</p>
+<p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111222937095.png" alt="image-20241111222937095"></p>
+<p>该论文就是这两个公式的理解。</p>
 
                 
             </div>
