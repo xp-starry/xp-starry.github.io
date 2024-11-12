@@ -4,13 +4,18 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vision Transformer, xpのblog">
-    <meta name="description" content="
-横轴代表在该数据集上进行预训练，纵轴代表对该数据集进行迁移学习
-其中横轴上 14 16 52*4 均代表 patch-size
+    <meta name="keywords" content="循环神经网络, xpのblog">
+    <meta name="description" content="序列数据
+实际中很多数据是有时序结构的
+电影的评价随时间变化而变化
+拿奖后评分上升，知道奖项被忘记
+看了很多好电影后，人们的期望变高
+季节性：贺岁片，暑期档
+导演，演员的负面报道导致评分变低
 
-通过 embedding层 之后得到一个个向量（这里称之为token）
-在一系列 token 前面加入新 t">
+
+音乐，语音，文本和视频都是连续的
+标题“狗咬">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +27,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vision Transformer | xpのblog</title>
+    <title>循环神经网络 | xpのblog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -320,7 +325,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vision Transformer</h1>
+                    <h1 class="description center-align post-title">循环神经网络</h1>
                 </div>
             </div>
         </div>
@@ -377,18 +382,23 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111174816281.png" alt="image-20241111174816281"></p>
-<p>横轴代表在该数据集上进行预训练，纵轴代表对该数据集进行迁移学习</p>
-<p>其中横轴上 14 16 52*4 均代表 patch-size</p>
-<p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111175409206.png" alt="image-20241111175409206"></p>
-<p>通过 embedding层 之后得到一个个向量（这里称之为token）</p>
-<p>在一系列 token 前面加入新 token，专门用于分类的 class token。</p>
-<p>其 维度同其他token</p>
-<p>增加了一个 class token 是参考 BERT 网络。</p>
-<p>token + class token + positon（位置参数之后）输入到 Transformer Encoder中。</p>
-<p>class token所对应的输出（因为只需要分类，多头注意力机制多少个输入就会有多少个输出）</p>
-<p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111180721851.png" alt="image-20241111180721851"></p>
-<p>上图代表未进入Transformer Encoder之前所做的操作。</p>
+                <h4 id="序列数据"><a href="#序列数据" class="headerlink" title="序列数据"></a>序列数据</h4><ul>
+<li>实际中很多数据是有时序结构的</li>
+<li>电影的评价随时间变化而变化<ul>
+<li>拿奖后评分上升，知道奖项被忘记</li>
+<li>看了很多好电影后，人们的期望变高</li>
+<li>季节性：贺岁片，暑期档</li>
+<li>导演，演员的负面报道导致评分变低</li>
+</ul>
+</li>
+<li>音乐，语音，文本和视频都是连续的<ul>
+<li>标题“狗咬人”远没有“人咬狗”那么令人惊讶</li>
+</ul>
+</li>
+<li>大地震发生后，很可能会有几次较小的余震</li>
+<li>人的互动是连续的，从网上吵架可以看出</li>
+<li>预测明天的股价要比填补昨天遗失的股价更加困难</li>
+</ul>
 
                 
             </div>
@@ -415,7 +425,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/11/11/%E6%A8%A1%E5%9E%8B%E5%A4%8D%E7%8E%B0/index/">http://example.com/2024/11/11/%E6%A8%A1%E5%9E%8B%E5%A4%8D%E7%8E%B0/index/</a>
+                    <a href="http://example.com/2024/11/11/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index/">http://example.com/2024/11/11/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -500,13 +510,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/index/">
+                <a href="/2024/11/11/%E6%A8%A1%E5%9E%8B%E5%A4%8D%E7%8E%B0/index/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="“Vue学习”">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Vision Transformer">
                         
-                        <span class="card-title">“Vue学习”</span>
+                        <span class="card-title">Vision Transformer</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -517,7 +527,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-11
                         </span>
                         <span class="publish-author">
                             
@@ -537,13 +547,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/11/11/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index/">
+                <a href="/2024/11/11/transformer/index/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="循环神经网络">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="transformer">
                         
-                        <span class="card-title">循环神经网络</span>
+                        <span class="card-title">transformer</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
