@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Vision Transformer</title>
+      <link href="/2024/11/11/%E6%A8%A1%E5%9E%8B%E5%A4%8D%E7%8E%B0/index/"/>
+      <url>/2024/11/11/%E6%A8%A1%E5%9E%8B%E5%A4%8D%E7%8E%B0/index/</url>
+      
+        <content type="html"><![CDATA[<p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111174816281.png" alt="image-20241111174816281"></p><p>横轴代表在该数据集上进行预训练，纵轴代表对该数据集进行迁移学习</p><p>其中横轴上 14 16 52*4 均代表 patch-size</p><p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111175409206.png" alt="image-20241111175409206"></p><p>通过 embedding层 之后得到一个个向量（这里称之为token）</p><p>在一系列 token 前面加入新 token，专门用于分类的 class token。</p><p>其 维度同其他token</p><p>增加了一个 class token 是参考 BERT 网络。</p><p>token + class token + positon（位置参数之后）输入到 Transformer Encoder中。</p><p>class token所对应的输出（因为只需要分类，多头注意力机制多少个输入就会有多少个输出）</p><p><img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241111180721851.png" alt="image-20241111180721851"></p><p>上图代表未进入Transformer Encoder之前所做的操作。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>transformer</title>
       <link href="/2024/11/11/transformer/index/"/>
       <url>/2024/11/11/transformer/index/</url>
