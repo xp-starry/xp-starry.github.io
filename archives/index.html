@@ -52,9 +52,156 @@
 
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+    
+        <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
 
-<body>
-    <header class="navbar-fixed">
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+            
+
+                <body>
+                    
+                        <div id="loading-container">
+                            <p class="loading-text">嘘~ 正在从服务器偷取页面 . . . </p>
+                            <div class="loading-image">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        
+
+
+                            <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
@@ -306,7 +453,7 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
+                                <div class="bg-cover pd-header about-cover">
     <div class="container">
     <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
@@ -478,7 +625,7 @@
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/Day2/">
+                        <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/Day1/">
                             <div class="card-image">
                                 
                                 
@@ -490,8 +637,13 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    fdsf
+                                    目前处于Vue2往Vue3过渡时期。
+Day1Vue快速上手什么是Vue？​		Vue是一个用于 构建用户界面 的 渐进式 框架。
 
+构建用户界面：基于数据动态渲染用户页面。
+渐进式：循序渐进（地学习）。
+框架：一套完整的项目解决方案。
+优
                                 
                             </div>
                             <div class="publish-info">
@@ -528,7 +680,7 @@
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/Day1/">
+                        <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/Day2/">
                             <div class="card-image">
                                 
                                 
@@ -540,13 +692,13 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    目前处于Vue2往Vue3过渡时期。
-Day1Vue快速上手什么是Vue？​		Vue是一个用于 构建用户界面 的 渐进式 框架。
+                                    Day2指令补充指令修饰符通过 “.” 指明一些指令的后缀，不同 后缀 封装了不同的处理操作  –&gt;  简化代码
 
-构建用户界面：基于数据动态渲染用户页面。
-渐进式：循序渐进（地学习）。
-框架：一套完整的项目解决方案。
-优
+按键修饰符
+@keyup.enter		  –&gt;  键盘回车监听
+
+v-model修饰符
+v-model.tri
                                 
                             </div>
                             <div class="publish-info">
@@ -949,7 +1101,7 @@ https://github.com/small-rose/hexo-them
 
 
 
-    <footer class="page-footer bg-color">
+                                    <footer class="page-footer bg-color">
     
         <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
 <style>
@@ -1126,7 +1278,7 @@ https://github.com/small-rose/hexo-them
 <div class="progress-bar"></div>
 
 
-    <!-- 搜索遮罩框 -->
+                                        <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
@@ -1230,7 +1382,7 @@ $(function () {
 });
 </script>
 
-    <!-- 白天和黑夜主题 -->
+                                            <!-- 白天和黑夜主题 -->
 <div class="stars-con">
     <div id="stars"></div>
     <div id="stars2"></div>
@@ -1254,7 +1406,7 @@ $(function () {
     }
 </script>
 
-    <!-- 回到顶部按钮 -->
+                                                <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
         <i class="fas fa-arrow-up"></i>
@@ -1262,42 +1414,55 @@ $(function () {
 </div>
 
 
-    <script src="/libs/materialize/materialize.min.js"></script>
-    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="/libs/aos/aos.js"></script>
-    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js"></script>
+                                                    <script
+                                                        src="/libs/materialize/materialize.min.js"></script>
+                                                    <script
+                                                        src="/libs/masonry/masonry.pkgd.min.js"></script>
+                                                    <script
+                                                        src="/libs/aos/aos.js"></script>
+                                                    <script
+                                                        src="/libs/scrollprogress/scrollProgress.min.js"></script>
+                                                    <script
+                                                        src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+                                                    <script
+                                                        src="/js/matery.js"></script>
 
-    
+                                                    
 
-    
-    
-    
+                                                            
 
-    <!-- 雪花特效 -->
-     
-        <script type="text/javascript">
-            // 只在桌面版网页启用特效
-            var windowWidth = $(window).width();
-            if (windowWidth > 768) {
-                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
-            }
-        </script>
-    
+                                                                    
 
-    <!-- 鼠标星星特效 -->
-    
+                                                                            <!-- 雪花特效 -->
+                                                                            
+                                                                                <script type="text/javascript">
+                                                                                    // 只在桌面版网页启用特效
+                                                                                    var windowWidth = $(window).width();
+                                                                                    if (windowWidth > 768) {
+                                                                                        document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+                                                                                    }
+                                                                                </script>
+                                                                                
 
-     
-        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
-        <script src="/libs/others/TencentCaptcha.js"></script>
-        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
-    
+                                                                                    <!-- 鼠标星星特效 -->
+                                                                                    
 
-    <!-- Baidu Analytics -->
+                                                                                            
+                                                                                                <script
+                                                                                                    src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+                                                                                                <script
+                                                                                                    src="/libs/others/TencentCaptcha.js"></script>
+                                                                                                <button
+                                                                                                    id="TencentCaptcha"
+                                                                                                    data-appid="xxxxxxxxxx"
+                                                                                                    data-cbfn="callback"
+                                                                                                    type="button"
+                                                                                                    hidden></button>
+                                                                                                
 
-    <!-- Baidu Push -->
+                                                                                                    <!-- Baidu Analytics -->
+
+                                                                                                        <!-- Baidu Push -->
 
 <script>
     (function () {
@@ -1313,29 +1478,35 @@ $(function () {
     })();
 </script>
 
-    
-    <script src="/libs/others/clicklove.js" async="async"></script>
-    
-    
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-    
+                                                                                                            
+                                                                                                                <script
+                                                                                                                    src="/libs/others/clicklove.js"
+                                                                                                                    async="async"></script>
+                                                                                                                
+                                                                                                                    
+                                                                                                                        <script
+                                                                                                                            async
+                                                                                                                            src="/libs/others/busuanzi.pure.mini.js"></script>
+                                                                                                                        
 
-    
+                                                                                                                            
 
-    
+                                                                                                                                    
 
-    <!--腾讯兔小巢-->
-    
-    
+                                                                                                                                            <!--腾讯兔小巢-->
+                                                                                                                                            
+                                                                                                                                                    
 
-    
+                                                                                                                                                            
 
-    
+                                                                                                                                                                        
 
-    
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
-    
+                                                                                                                                                                                
+                                                                                                                                                                                    <script
+                                                                                                                                                                                        src="/libs/instantpage/instantpage.js"
+                                                                                                                                                                                        type="module"></script>
+                                                                                                                                                                                    
 
-</body>
+                </body>
 
 </html>

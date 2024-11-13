@@ -5,8 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="“Vue学习”, xpのblog">
-    <meta name="description" content="fdsf
-">
+    <meta name="description" content="Day2指令补充指令修饰符通过 “.” 指明一些指令的后缀，不同 后缀 封装了不同的处理操作  –&amp;gt;  简化代码
+
+按键修饰符
+@keyup.enter		  –&amp;gt;  键盘回车监听
+
+v-model修饰符
+v-model.tri">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -53,9 +58,156 @@
 
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+    
+        <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
 
-<body>
-    <header class="navbar-fixed">
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+            
+
+                <body>
+                    
+                        <div id="loading-container">
+                            <p class="loading-text">嘘~ 正在从服务器偷取页面 . . . </p>
+                            <div class="loading-image">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        
+
+
+                            <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
@@ -307,7 +459,7 @@
 
 </header>
 
-    
+                                
 
 
 
@@ -373,7 +525,20 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>fdsf</p>
+                <h1 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h1><h2 id="指令补充"><a href="#指令补充" class="headerlink" title="指令补充"></a>指令补充</h2><h3 id="指令修饰符"><a href="#指令修饰符" class="headerlink" title="指令修饰符"></a>指令修饰符</h3><p>通过 “.” 指明一些指令的<strong>后缀</strong>，不同 <strong>后缀</strong> 封装了不同的处理操作  –&gt;  简化代码</p>
+<ol>
+<li><p>按键修饰符</p>
+<p>@keyup.enter		  –&gt;  键盘回车监听</p>
+</li>
+<li><p>v-model修饰符</p>
+<p>v-model.trim		    –&gt;  去除首尾空格</p>
+<p>v-model.number    –&gt;  转数字</p>
+</li>
+<li><p>事件修饰符</p>
+<p>@事件名.stop			–&gt; 	阻止冒泡</p>
+<p>@事件名.prevent	–&gt;	阻止默认行为</p>
+</li>
+</ol>
 
                 
             </div>
@@ -481,12 +646,11 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/Day2/">
+                <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/Day1/">
                     <div class="card-image">
                         
                         
@@ -502,9 +666,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -513,7 +677,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -524,7 +687,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/Day1/">
+                <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/index/">
                     <div class="card-image">
                         
                         
@@ -671,7 +834,7 @@
 
 
 
-    <footer class="page-footer bg-color">
+                                    <footer class="page-footer bg-color">
     
         <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
 <style>
@@ -848,7 +1011,7 @@
 <div class="progress-bar"></div>
 
 
-    <!-- 搜索遮罩框 -->
+                                        <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
@@ -952,7 +1115,7 @@ $(function () {
 });
 </script>
 
-    <!-- 白天和黑夜主题 -->
+                                            <!-- 白天和黑夜主题 -->
 <div class="stars-con">
     <div id="stars"></div>
     <div id="stars2"></div>
@@ -976,7 +1139,7 @@ $(function () {
     }
 </script>
 
-    <!-- 回到顶部按钮 -->
+                                                <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
         <i class="fas fa-arrow-up"></i>
@@ -984,42 +1147,55 @@ $(function () {
 </div>
 
 
-    <script src="/libs/materialize/materialize.min.js"></script>
-    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="/libs/aos/aos.js"></script>
-    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js"></script>
+                                                    <script
+                                                        src="/libs/materialize/materialize.min.js"></script>
+                                                    <script
+                                                        src="/libs/masonry/masonry.pkgd.min.js"></script>
+                                                    <script
+                                                        src="/libs/aos/aos.js"></script>
+                                                    <script
+                                                        src="/libs/scrollprogress/scrollProgress.min.js"></script>
+                                                    <script
+                                                        src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+                                                    <script
+                                                        src="/js/matery.js"></script>
 
-    
+                                                    
 
-    
-    
-    
+                                                            
 
-    <!-- 雪花特效 -->
-     
-        <script type="text/javascript">
-            // 只在桌面版网页启用特效
-            var windowWidth = $(window).width();
-            if (windowWidth > 768) {
-                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
-            }
-        </script>
-    
+                                                                    
 
-    <!-- 鼠标星星特效 -->
-    
+                                                                            <!-- 雪花特效 -->
+                                                                            
+                                                                                <script type="text/javascript">
+                                                                                    // 只在桌面版网页启用特效
+                                                                                    var windowWidth = $(window).width();
+                                                                                    if (windowWidth > 768) {
+                                                                                        document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+                                                                                    }
+                                                                                </script>
+                                                                                
 
-     
-        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
-        <script src="/libs/others/TencentCaptcha.js"></script>
-        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
-    
+                                                                                    <!-- 鼠标星星特效 -->
+                                                                                    
 
-    <!-- Baidu Analytics -->
+                                                                                            
+                                                                                                <script
+                                                                                                    src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+                                                                                                <script
+                                                                                                    src="/libs/others/TencentCaptcha.js"></script>
+                                                                                                <button
+                                                                                                    id="TencentCaptcha"
+                                                                                                    data-appid="xxxxxxxxxx"
+                                                                                                    data-cbfn="callback"
+                                                                                                    type="button"
+                                                                                                    hidden></button>
+                                                                                                
 
-    <!-- Baidu Push -->
+                                                                                                    <!-- Baidu Analytics -->
+
+                                                                                                        <!-- Baidu Push -->
 
 <script>
     (function () {
@@ -1035,29 +1211,35 @@ $(function () {
     })();
 </script>
 
-    
-    <script src="/libs/others/clicklove.js" async="async"></script>
-    
-    
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-    
+                                                                                                            
+                                                                                                                <script
+                                                                                                                    src="/libs/others/clicklove.js"
+                                                                                                                    async="async"></script>
+                                                                                                                
+                                                                                                                    
+                                                                                                                        <script
+                                                                                                                            async
+                                                                                                                            src="/libs/others/busuanzi.pure.mini.js"></script>
+                                                                                                                        
 
-    
+                                                                                                                            
 
-    
+                                                                                                                                    
 
-    <!--腾讯兔小巢-->
-    
-    
+                                                                                                                                            <!--腾讯兔小巢-->
+                                                                                                                                            
+                                                                                                                                                    
 
-    
+                                                                                                                                                            
 
-    
+                                                                                                                                                                        
 
-    
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
-    
+                                                                                                                                                                                
+                                                                                                                                                                                    <script
+                                                                                                                                                                                        src="/libs/instantpage/instantpage.js"
+                                                                                                                                                                                        type="module"></script>
+                                                                                                                                                                                    
 
-</body>
+                </body>
 
 </html>
