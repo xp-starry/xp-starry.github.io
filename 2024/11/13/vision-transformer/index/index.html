@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类, xpのblog">
-    <meta name="description" content="Never really desperate, only the lost of the soul">
+    <meta name="keywords" content="vision transformer, xpのblog">
+    <meta name="description" content=" 全称：AN IMAGE IS WORTH 16×16 WORDS:TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE
+发表：2020 CVPR
+原文链接：https://arxiv.org/abs/20">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类 | xpのblog</title>
+    <title>vision transformer | xpのblog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -457,12 +459,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">categories</h1>
+                    <h1 class="description center-align post-title">vision transformer</h1>
                 </div>
             </div>
         </div>
@@ -498,7 +500,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-11-10
+                    2024-11-13
                 </div>
                 
 
@@ -519,12 +521,48 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<p>title:  categories</p>
-<p>date: 2024-11-10 10:43:20</p>
-<p>type: “categories”</p>
-<p>layout: “categories”</p>
-<hr>
+                <p> 全称：AN IMAGE IS WORTH 16×16 WORDS:TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE</p>
+<p>发表：2020 CVPR</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.11929">https://arxiv.org/abs/2010.11929</a></p>
+<p>博文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37541097/article/details/118242600">https://blog.csdn.net/qq_37541097/article/details/118242600</a></p>
+<p><img src="https://pic.imgdb.cn/item/673480e2d29ded1a8c814018.png"></p>
+<p>​		在横轴数据集上进行预训练，然后在纵轴数据集上进行迁移学习，eg.88.55所对应采用ViT-H&#x2F;14，前者代表采用的模型，后者代表patchsize。</p>
+<p>​		论文中对 transformer（ViT），ResNet（Bit）和 Hybird 进行对比。</p>
+<pre><code>        - ViT（&quot;纯&quot;Transformer模型）
+        - ResNet（Bit，与之前的略有不同）
+        - Hybrid（传统CNN和Transformer混合模型）
+</code></pre>
+<p>​		将每个图片分成patchs，每个patchs大小为上表中对应的 <strong>&#x2F;数字</strong></p>
+<p><img src="https://pic.imgdb.cn/item/67348070d29ded1a8c80dcd7.png"></p>
+<ul>
+<li>Linear Projection of Flattened Patches（Embedding层）</li>
+<li>Transformer Encoder（图右侧有给出更加详细的结构）</li>
+<li>MLP Head（最终用于分类的层结构）</li>
+</ul>
+<p>​		batches经过embedding层之后，生成各自的token，在增加一个class token（参考的BERT网络，用于分类），所有token对应的demension都是相同的，都是向量，向量长度也相同；紧接着加上Position Embedding，这一系列token+位置参数输入Transformer Encoder，重复堆叠L次，在将class token所对应的输出通过MLP Head得到最终的分类结果。</p>
+<h4 id="动图展示过程："><a href="#动图展示过程：" class="headerlink" title="动图展示过程："></a>动图展示过程：</h4><p>参考<a target="_blank" rel="noopener" href="https://github.com/lucidrains/vit-pytorch">https://github.com/lucidrains/vit-pytorch</a></p>
+<img src="C:\Users\xiaop\Desktop\vit.gif" alt="vit" style="zoom:50%;" />
+
+
+
+<h4 id="Embedding层"><a href="#Embedding层" class="headerlink" title="Embedding层"></a>Embedding层</h4><p>​	对于标准的Transformer模块，要求输入的是token（向量）序列，即二维矩阵[num_token,token_dim]</p>
+<p>​	在代码实现中，直接通过一个卷积层来实现ViT-B&#x2F;16为例，使用卷积核大小为 16×16，stide为16，卷积核个数为768		[224,224,3] -&gt; [14,14,768] -&gt; [196,768]		768 &#x3D; 16 * 16 * 3</p>
+<p>​	</p>
+<p>​	在输入Transformer Encoder之前需要加上[class]token以及Positon Embedding，都是可训练参数</p>
+<p>​	拼接[class]token:  Cat([1,768],[196,768]) -&gt; [197,768]</p>
+<p>​	叠加Position Embedding:  [197,768] -&gt;  [197,768]		普通加法</p>
+<h4 id="Position-Embedding"><a href="#Position-Embedding" class="headerlink" title="Position Embedding"></a>Position Embedding</h4><p><img src="https://pic.imgdb.cn/item/67348a53d29ded1a8c8af300.png"></p>
+<p>使用位置编码增加了将近3个百分点,1d的参数相对较少且增加的百分点较多</p>
+<p>the differences in how to encode spatial information is less important</p>
+<p><img src="https://pic.imgdb.cn/item/67348b29d29ded1a8c8b9305.png"></p>
+<p>上图中patches大小是32*32的  224&#x2F;32 &#x3D; 7   所以是 7 * 7 大小</p>
+<p>计算余弦相似度来表明任意两个patches之间在位置上的关联度</p>
+<h4 id="Transformer-Encoder层"><a href="#Transformer-Encoder层" class="headerlink" title="Transformer Encoder层"></a>Transformer Encoder层</h4><p><img src="https://pic.imgdb.cn/item/67348dfdd29ded1a8c8dbdf4.png"></p>
+<h4 id="MLP-Head层"><a href="#MLP-Head层" class="headerlink" title="MLP Head层"></a>MLP Head层</h4><p>注意：在Transformer Encoder前有个Dropout层，后有一个Layer Norm</p>
+<p>训练ImageNet21l时是由Linear+tanh激活函数+Linear，都是迁移到ImageNet1K上或者你自己的数据集上时，只有一个Linear，如果要的到每个类别的话需要增加一个softmax激活函数</p>
+<h4 id="ViT-B-16"><a href="#ViT-B-16" class="headerlink" title="ViT-B&#x2F;16"></a>ViT-B&#x2F;16</h4><p><img src="https://pic.imgdb.cn/item/673492c9d29ded1a8c915f6f.png"></p>
+<h4 id="hybrid混合模型"><a href="#hybrid混合模型" class="headerlink" title="hybrid混合模型"></a>hybrid混合模型</h4><p><img src="https://pic.imgdb.cn/item/673490efd29ded1a8c8ff2e3.png"></p>
+<h4 id="三种模型结果对比"><a href="#三种模型结果对比" class="headerlink" title="三种模型结果对比"></a>三种模型结果对比</h4><p><img src="https://pic.imgdb.cn/item/6734923fd29ded1a8c90f742.png"></p>
 
                 
             </div>
@@ -551,7 +589,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/categories/index.html">http://example.com/categories/index.html</a>
+                    <a href="http://example.com/2024/11/13/vision-transformer/index/">http://example.com/2024/11/13/vision-transformer/index/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -637,13 +675,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/categories/index.html">
+                <a href="/2024/11/13/vision-transformer/index/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="vision transformer">
                         
-                        <span class="card-title">categories</span>
+                        <span class="card-title">vision transformer</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -654,7 +692,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-13
                             </span>
                         <span class="publish-author">
                             
@@ -672,16 +710,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/categories/index.html">
+                <a href="/2024/11/12/Vue%E5%AD%A6%E4%B9%A0/Day2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="“Vue学习”">
                         
-                        <span class="card-title">categories</span>
+                        <span class="card-title">“Vue学习”</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -692,7 +730,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-12
                             </span>
                         <span class="publish-author">
                             
@@ -702,7 +740,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
