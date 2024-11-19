@@ -550,10 +550,10 @@ Linux发行版提供了内核+系统级程序的完整封装，称之为Linux发
 <li><p>打开VM中的Linux系统，查询IP地址，右键 open terminal -&gt; ifconfig -&gt;  ens33第二行 inet 192.168.138.128</p>
 </li>
 <li><p>打开FinalShell，并执行如图所示操作：</p>
-<img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241118151240648.png" alt="image-20241118151240648" style="zoom:50%;" /></li>
+<img src="https://pic.imgdb.cn/item/673beea8d29ded1a8c3053cd.png" style="zoom:50%;" /></li>
 </ol>
 <p>​	</p>
-<img src="C:\Users\xiaop\AppData\Roaming\Typora\typora-user-images\image-20241118151339523.png" alt="image-20241118151339523" style="zoom:50%;" />
+<img src="https://pic.imgdb.cn/item/673beea8d29ded1a8c305396.png" style="zoom:50%;" />
 
 <p>确认之后弹出安全警告，点击接受并保存。</p>
 <ol start="3">
@@ -739,6 +739,34 @@ Linux发行版提供了内核+系统级程序的完整封装，称之为Linux发
 <p>cat Desktop&#x2F;test.txt | grep itcast | wc -l</p>
 <p>统计文件中带有itheima关键字的结果中有多少个单词</p>
 <p>cat Desktop&#x2F;test.txt | grep itheima | wc -w</p>
+<h4 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h4><p>​	功能：在命令行内输出指定内容</p>
+<p>​	语法：echo 输出的内容</p>
+<ul>
+<li>无需选项，只有一个参数，表示要输出的内容，复杂内容用 **””**包围</li>
+</ul>
+<h4 id="反引号符"><a href="#反引号符" class="headerlink" title="&#96;反引号符"></a>&#96;反引号符</h4><p>​	被 &#96; 包围的内容，会被作为命令执行，而非普通字符</p>
+<h4 id="重定向符"><a href="#重定向符" class="headerlink" title="重定向符"></a>重定向符</h4><ol>
+<li>一个大于，将左侧命令的结果，<strong>覆盖</strong>写入到符号右侧指定的文件中</li>
+<li>两个大于，将左侧命令的结果，<strong>追加</strong>写入到符号右侧指定的文件中</li>
+</ol>
+<h4 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a>tail命令</h4><p>​	功能：查看文件尾部内容，并可以持续跟踪</p>
+<p>​	语法：tail [-f -num] Linux路径</p>
+<pre><code>    - -f选项：持续跟踪，-num：启动的时候查看尾部多少行，默认10
+    - Linux路径：表示被查看的文件
+</code></pre>
+<h5 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h5><p>​	 echo “我当前的工作目录是<code>pwd</code>“ &gt; work.txt</p>
+<pre><code> echo &quot;内容&quot; &gt;&gt; work.txt
+</code></pre>
+<p>​	 tail -f work.txt </p>
+<h4 id="vi-vim编辑器"><a href="#vi-vim编辑器" class="headerlink" title="vi&#x2F;vim编辑器"></a>vi&#x2F;vim编辑器</h4><p>​	功能：命令行模式下的文本编辑器，用来编辑文件</p>
+<p>​	vim是vi的升级版，一般用vim即可，包含全部vi功能</p>
+<p>​	语法：vi 文件路径          &#x2F;            vim 文件路径</p>
+<p>​	运行模式：</p>
+<pre><code>    - 命令模式：默认的模式，可以通过键盘快捷键控制文件内容
+    - 输入模式：通过命令模式进入，可以输入内容进行编辑，按Esc退出命令模式
+    - 底线命令模式：通过命令模式进入，可以对文件进行保存、关闭等操作
+</code></pre>
+<p>相关命令：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-vim.html">https://www.runoob.com/linux/linux-vim.html</a></p>
 
                 
             </div>
